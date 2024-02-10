@@ -30,7 +30,7 @@ async function start(){
 start()
 
 /*
- * API data pets.json
+ * API data pets.json & create clone template HTML for pet card
  * https://elviredev.github.io/pets-adoption-data/pets.json
  * https://learnwebcode.github.io/bootcamp-pet-data/pets.json
  */
@@ -41,9 +41,25 @@ async function petsArea(){
         // créé clone du code html
         const clone = template.content.cloneNode(true)
         clone.querySelector("h3").textContent = pet.name
+        clone.querySelector(".pet-description").textContent = pet.description
+        clone.querySelector(".pet-age").textContent = createAgeText(pet.birthYear)
+        clone.querySelector(".pet-card-photo img").src = pet.photo
+        clone.querySelector(".pet-card-photo img").alt = `Un ${pet.species} nommé ${pet.name}`
+
         wrapper.appendChild(clone)
     })
     document.querySelector(".list-of-pets").appendChild(wrapper)
 }
 
 petsArea()
+
+function createAgeText(birthYear) {
+    // Année en cours
+    const currentYear = new Date().getFullYear()
+    const age = currentYear - birthYear
+
+    if (age == 1) return "1 an"
+    if (age == 0) return "Moins d'un an"
+
+    return `${age} ans`
+}
