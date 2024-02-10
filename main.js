@@ -1,3 +1,6 @@
+const template = document.querySelector("#pet-card-template")
+const wrapper = document.createDocumentFragment()
+
 /*
  * Api Data Météo - Ville de Chelles
  * https://www.infoclimat.fr/api-previsions-meteo.html?id=3025622&cntry=FR
@@ -22,20 +25,25 @@ async function start(){
     // const weatherPromise = await fetch("https://api.weather.gov/gridpoints/MFL/110,50/forecast")
     // const weatherData = await weatherPromise.json()
     // const temperature = weatherData.properties.periods[0].temperature
-    // console.log(temperature)
 }
 
 start()
 
 /*
  * API data pets.json
+ * https://elviredev.github.io/pets-adoption-data/pets.json
+ * https://learnwebcode.github.io/bootcamp-pet-data/pets.json
  */
 async function petsArea(){
-    const petsPromise = await fetch("https://learnwebcode.github.io/bootcamp-pet-data/pets.json")
+    const petsPromise = await fetch("https://elviredev.github.io/pets-adoption-data/pets.json")
     const petsData = await petsPromise.json()
     petsData.forEach(pet => {
-        console.log(pet.name)
+        // créé clone du code html
+        const clone = template.content.cloneNode(true)
+        clone.querySelector("h3").textContent = pet.name
+        wrapper.appendChild(clone)
     })
+    document.querySelector(".list-of-pets").appendChild(wrapper)
 }
 
 petsArea()
