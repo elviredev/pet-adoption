@@ -40,6 +40,10 @@ async function petsArea(){
     petsData.forEach(pet => {
         // créé clone du code html
         const clone = template.content.cloneNode(true)
+
+        // donner un attribut data-species à pet card pour trier les espèces
+        clone.querySelector(".pet-card").dataset.species = pet.species
+
         clone.querySelector("h3").textContent = pet.name
         clone.querySelector(".pet-description").textContent = pet.description
         clone.querySelector(".pet-age").textContent = createAgeText(pet.birthYear)
@@ -83,5 +87,15 @@ function handleButtonClick(e) {
     e.target.classList.add('active')
 
     // filter the pets
+    // récupère valeur de data-filter
+    const currentFilter = e.target.dataset.filter
+    // parcourir les pet-card et selon leur espèce soit les cacher soit les montrer
+    document.querySelectorAll(".pet-card").forEach(el => {
+        if (currentFilter == el.dataset.species || currentFilter == 'tous') {
+            el.style.display = "grid"
+        } else {
+            el.style.display = "none"
+        }
+    })
 }
 
