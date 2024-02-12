@@ -33,7 +33,7 @@ start()
  * API data pets.json & create clone template HTML for pet card
  * https://elviredev.github.io/pets-adoption-data/pets.json
  * https://learnwebcode.github.io/bootcamp-pet-data/pets.json
- * Netlify: https://pets-adoption-center.netlify.app/.netlify/functions/pets
+ * https://pets-adoption-center.netlify.app/.netlify/functions/pets
  */
 async function petsArea(){
     const petsPromise = await fetch("https://pets-adoption-center.netlify.app/.netlify/functions/pets")
