@@ -36,7 +36,7 @@ start()
  * https://pets-adoption-center.netlify.app/.netlify/functions/pets
  */
 async function petsArea(){
-    const petsPromise = await fetch("https://pets-adoption-center.netlify.app/.netlify/functions/pets")
+    const petsPromise = await fetch("https://elviredev.github.io/pets-adoption-data/pets.json")
     const petsData = await petsPromise.json()
     petsData.forEach(pet => {
         // créé clone du code html
